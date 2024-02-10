@@ -1,4 +1,5 @@
 const vscode = require("vscode");
+const data = require("./assets/data");
 
 const docs = {
   boring: "https://docs.sailscasts.com/boring-stack/getting-started",
@@ -8,6 +9,17 @@ const docs = {
 /**
  * @param {vscode.ExtensionContext} context
  */
+
+class Provider {
+  provideHover(document, position) {
+    const wordRange = document.getWordRangeAtPosition(position);
+    const word = wordRange ? document.getText(wordRange) : "";
+    const info = data[word] || "";
+    const md = new vscode.MarkdownString(info);
+    return new vscode.Hover(md);
+  }
+}
+
 function activate(context) {
   let currentPanel = undefined;
   let sailsPanel = undefined;
@@ -83,11 +95,7 @@ function activate(context) {
   );
 
   context.subscriptions.push(
-    vscode.commands.registerCommand("boringdocs.search", function () {
-      vscode.window.showInformationMessage(
-        "Hello World from search boringdocs!"
-      );
-    })
+    vscode.languages.registerHoverProvider("javascript", new Provider())
   );
 }
 
@@ -127,4 +135,5 @@ function getWebContent(doc, color) {
 module.exports = {
   activate,
   deactivate,
+  Provider,
 };

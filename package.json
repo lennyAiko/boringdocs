@@ -4,7 +4,7 @@
   "description": "The vscode extension documentation  for sailsjs and the javascript boring stack",
   "version": "0.0.1",
   "publisher": "Lennox Charles",
-  "icon": "./media/boringsails.png",
+  "icon": "./assets/boringsails.png",
   "engines": {
     "vscode": "^1.86.0"
   },
@@ -31,7 +31,9 @@
     "Education",
     "Programming Languages"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onLanguage:javascript"
+  ],
   "main": "./extension.js",
   "contributes": {
     "commands": [
@@ -43,11 +45,6 @@
       {
         "command": "boringdocs.tbjs",
         "title": "Display the documentation for the boring stack (tbjs)",
-        "category": "Boring Docs"
-      },
-      {
-        "command": "boringdocs.search",
-        "title": "Search docs",
         "category": "Boring Docs"
       }
     ],
@@ -61,11 +58,6 @@
         "command": "boringdocs.tbjs",
         "key": "ctrl+shift+2",
         "mac": "ctrl+cmd+2"
-      },
-      {
-        "command": "boringdocs.search",
-        "key": "ctrl+shift+3",
-        "mac": "ctrl+cmd+3"
       }
     ]
   },
