@@ -40,7 +40,7 @@
       },
       {
         "command": "boringdocs.tbjs",
-        "title": "Display the documentation for the boring stack",
+        "title": "Display the documentation for the boring stack (tbjs)",
         "category": "Boring Docs"
       },
       {
@@ -59,6 +59,11 @@
         "command": "boringdocs.tbjs",
         "key": "ctrl+shift+2",
         "mac": "ctrl+cmd+2"
+      },
+      {
+        "command": "boringdocs.search",
+        "key": "ctrl+shift+3",
+        "mac": "ctrl+cmd+3"
       }
     ]
   },

@@ -1,36 +1,128 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
-const vscode = require('vscode');
+const vscode = require("vscode");
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
+const docs = {
+  boring: "https://docs.sailscasts.com/boring-stack/getting-started",
+  sails: "https://sailsjs.com/documentation/concepts",
+};
 
 /**
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
+  let currentPanel = undefined;
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "boringdocs" is now active!');
+  context.subscriptions.push(
+    vscode.commands.registerCommand("boringdocs.tbjs", function () {
+      const columnToShowIn = vscode.window.activeTextEditor
+        ? vscode.window.activeTextEditor.viewColumn
+        : undefined;
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with  registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('boringdocs.helloWorld', function () {
-		// The code you place here will be executed every time your command is executed
+      if (currentPanel) {
+        currentPanel.reveal(columnToShowIn);
+      } else {
+        currentPanel = vscode.window.createWebviewPanel(
+          "boringdocs",
+          "Boring Stack Docs",
+          columnToShowIn || vscode.ViewColumn.One,
+          {
+            enableScripts: true,
+            retainContextWhenHidden: true,
+          }
+        );
+      }
 
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from boringdocs!');
-	});
+      currentPanel.webview.html = getWebContent("boring");
+      currentPanel.onDidDispose(
+        () => {
+          currentPanel = undefined;
+        },
+        null,
+        context.subscriptions
+      );
 
-	context.subscriptions.push(disposable);
+      vscode.window.showInformationMessage(
+        "You are now viewing the boring docs"
+      );
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand("boringdocs.sails", function () {
+      const columnToShowIn = vscode.window.activeTextEditor
+        ? vscode.window.activeTextEditor.viewColumn
+        : undefined;
+
+      if (currentPanel) {
+        currentPanel.reveal(columnToShowIn);
+      } else {
+        currentPanel = vscode.window.createWebviewPanel(
+          "boringdocs",
+          "Boring Stack Docs",
+          columnToShowIn || vscode.ViewColumn.One,
+          {
+            enableScripts: true,
+            retainContextWhenHidden: true,
+          }
+        );
+      }
+
+      currentPanel.webview.html = getWebContent("boring");
+      currentPanel.onDidDispose(
+        () => {
+          currentPanel = undefined;
+        },
+        null,
+        context.subscriptions
+      );
+
+      vscode.window.showInformationMessage(
+        "You are now viewing the sails docs"
+      );
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand("boringdocs.search", function () {
+      vscode.window.showInformationMessage(
+        "Hello World from search boringdocs!"
+      );
+    })
+  );
 }
 
-// This method is called when your extension is deactivated
 function deactivate() {}
 
-module.exports = {
-	activate,
-	deactivate
+function getWebContent(doc) {
+  return ` <!DOCTYPE html>
+    <html lang="en">
+    <body style="width: 100%; height: 100%; margin: 0; padding: 0; overflow: hidden;">
+		    <iframe
+      src="${docs[doc]}"
+	  id="myIframe"
+      frameborder="0"
+      style="width:100vw; height:100vh; margin:0; padding:0;"
+    ></iframe>
+	<script>
+          // Function to cache content in localStorage
+          function cacheContent() {
+            const iframe = document.getElementById('myIframe');
+            const cachedContent = iframe.contentDocument.body.innerHTML;
+            localStorage.setItem('cachedContent', cachedContent);
+          }
+
+          // Load cached content if available
+          window.onload = function() {
+            const cachedContent = localStorage.getItem('cachedContent');
+            if (cachedContent) {
+              const iframe = document.getElementById('myIframe');
+			  iframe.style.backgroundColor = 'white';
+              iframe.contentDocument.body.innerHTML = cachedContent;
+            }
+          };
+        </script>
+    </body>
+    </html>`;
 }
+
+module.exports = {
+  activate,
+  deactivate,
+};
