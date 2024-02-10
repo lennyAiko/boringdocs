@@ -10,6 +10,7 @@ const docs = {
  */
 function activate(context) {
   let currentPanel = undefined;
+  let sailsPanel = undefined;
 
   context.subscriptions.push(
     vscode.commands.registerCommand("boringdocs.tbjs", function () {
@@ -45,18 +46,19 @@ function activate(context) {
       );
     })
   );
+
   context.subscriptions.push(
     vscode.commands.registerCommand("boringdocs.sails", function () {
       const columnToShowIn = vscode.window.activeTextEditor
         ? vscode.window.activeTextEditor.viewColumn
         : undefined;
 
-      if (currentPanel) {
-        currentPanel.reveal(columnToShowIn);
+      if (sailsPanel) {
+        sailsPanel.reveal(columnToShowIn);
       } else {
-        currentPanel = vscode.window.createWebviewPanel(
+        sailsPanel = vscode.window.createWebviewPanel(
           "boringdocs",
-          "Boring Stack Docs",
+          "Sailsjs Docs",
           columnToShowIn || vscode.ViewColumn.One,
           {
             enableScripts: true,
@@ -65,10 +67,10 @@ function activate(context) {
         );
       }
 
-      currentPanel.webview.html = getWebContent("boring");
-      currentPanel.onDidDispose(
+      sailsPanel.webview.html = getWebContent("sails", "white");
+      sailsPanel.onDidDispose(
         () => {
-          currentPanel = undefined;
+          sailsPanel = undefined;
         },
         null,
         context.subscriptions
@@ -79,6 +81,7 @@ function activate(context) {
       );
     })
   );
+
   context.subscriptions.push(
     vscode.commands.registerCommand("boringdocs.search", function () {
       vscode.window.showInformationMessage(
@@ -90,7 +93,7 @@ function activate(context) {
 
 function deactivate() {}
 
-function getWebContent(doc) {
+function getWebContent(doc, color) {
   return ` <!DOCTYPE html>
     <html lang="en">
     <body style="width: 100%; height: 100%; margin: 0; padding: 0; overflow: hidden;">
@@ -98,7 +101,7 @@ function getWebContent(doc) {
       src="${docs[doc]}"
 	  id="myIframe"
       frameborder="0"
-      style="width:100vw; height:100vh; margin:0; padding:0;"
+      style="width:100vw; height:100vh; margin:0; padding:0; background:${color}" 
     ></iframe>
 	<script>
           // Function to cache content in localStorage
@@ -113,7 +116,6 @@ function getWebContent(doc) {
             const cachedContent = localStorage.getItem('cachedContent');
             if (cachedContent) {
               const iframe = document.getElementById('myIframe');
-			  iframe.style.backgroundColor = 'white';
               iframe.contentDocument.body.innerHTML = cachedContent;
             }
           };
