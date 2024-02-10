@@ -3,19 +3,64 @@
   "displayName": "boringdocs",
   "description": "The vscode extension documentation  for sailsjs and the javascript boring stack",
   "version": "0.0.1",
+  "publisher": "Lennox Charles",
+  "icon": "./media/boringsails.png",
   "engines": {
     "vscode": "^1.86.0"
   },
+  "keywords": [
+    "documentation",
+    "docs",
+    "search",
+    "shortcut",
+    "boringstack",
+    "javascript",
+    "boring-stack",
+    "sailsjs",
+    "sails-js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lennyAiko/boringdocs"
+  },
   "categories": [
-    "Other"
+    "Other",
+    "Extension Packs",
+    "Education",
+    "Programming Languages"
   ],
   "activationEvents": [],
   "main": "./extension.js",
   "contributes": {
-    "commands": [{
-      "command": "boringdocs.helloWorld",
-      "title": "Hello World"
-    }]
+    "commands": [
+      {
+        "command": "boringdocs.sails",
+        "title": "Display the documentation for sailsjs",
+        "category": "Boring Docs"
+      },
+      {
+        "command": "boringdocs.tbjs",
+        "title": "Display the documentation for the boring stack",
+        "category": "Boring Docs"
+      },
+      {
+        "command": "boringdocs.search",
+        "title": "Search docs",
+        "category": "Boring Docs"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "boringdocs.sails",
+        "key": "ctrl+shift+1",
+        "mac": "ctrl+cmd+1"
+      },
+      {
+        "command": "boringdocs.tbjs",
+        "key": "ctrl+shift+2",
+        "mac": "ctrl+cmd+2"
+      }
+    ]
   },
   "scripts": {
     "lint": "eslint .",
