@@ -17,7 +17,9 @@
     "javascript",
     "boring-stack",
     "sailsjs",
-    "sails-js"
+    "sails-js",
+    "sails",
+    "tbjs"
   ],
   "repository": {
     "type": "git",
