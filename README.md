@@ -1,65 +1,40 @@
-# boringdocs README
+# boringdocs documentation
 
-This is the README for your extension "boringdocs". After writing up a brief description, we recommend including the following sections.
+This is the `boringdocs` VSCode extension that gives you the documentation of [sailsjs](https://sailsjs.com/documentation/concepts) and the [boring javascript stack](https://docs.sailscasts.com/boring-stack/getting-started).
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+> Both docs will open within VSCode so you won't lose context!
 
-For example if there is an image subfolder under your extension project workspace:
+### Sails
 
-\!\[feature X\]\(images/feature-x.png\)
+- Type the command `boringdocs.sails`
+- or simply press
+  - windows: `ctrl+shift+1`
+  - mac: `ctrl+cmd+1`
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+![sails docs gif](/assets/sails.gif)
 
-## Requirements
+### The boring stack
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+- Type the command `boringdocs.tbjs`
+- or simply press
+  - windows: `ctrl+shift+2`
+  - mac: `ctrl+cmd+2`
 
-## Extension Settings
+![tbjs docs gif](/assets/tbjs.gif)
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+> Side note: If it loads slowly on first try, do not fret. The pages are cached automatically so it loads faster on the next.
 
-For example:
+### Hover feature
 
-This extension contributes the following settings:
+Hover on a keyword used in sailsjs to get a summary about that keyword.
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+![hover1 gif](/assets/hover1.gif)
+![hover2 gif](/assets/hover2.gif)
 
-## Known Issues
+## Issues & Feature requests
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+Issues and feature requests related to the extension can be submitted [on Github](https://github.com/lennyAiko/boringdocs/issues)
 
 **Enjoy!**

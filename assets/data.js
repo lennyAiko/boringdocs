@@ -20,6 +20,22 @@ module.exports = {
 
   [Read More](https://sailsjs.com/documentation/reference/waterline-orm/models/create)
     `,
+  fetch: `**fetch - ${docs["sails"]}**
+
+  Fetch the record from the database after it has been created.
+
+  _Usage:_
+
+  const something = await Something.create({ data }).fetch()
+  `,
+  populate: `**populate - ${docs["sails"]}**
+
+  Populate the record with related records.
+
+  _Usage:_
+
+  const something = await Something.findOne({ query }).populate('relatedRecord')
+  `,
   inputs: `**inputs - ${docs["sails"]}**
 
     inputs contain the values your action is expecting.
