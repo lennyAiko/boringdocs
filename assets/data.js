@@ -3,12 +3,14 @@ const docs = {
   boring: "The Boring Stack Docs",
 };
 
+// How can i view the read more in the boringdocs and not the browser?
+
 module.exports = {
   create: `**create - ${docs["sails"]}**
 
   Create a record in the database.
 
-  _Example:_
+  _Usage:_
 
   await Something.create(initialValues);
 
@@ -28,12 +30,49 @@ module.exports = {
 
   Render a page by returning an inertia response from a controller or route.
 
-  _Example:_
+  _Usage:_
 
   const articles = await Article.find({});
 
   return sails.inertia.render('pageDir', { articles })
   
   [Read More](https://docs.sailscasts.com/boring-stack/routing)
+  `,
+  exits: `**exits - ${docs["sails"]}**
+  
+  In an action, helper, or script, throwing anything will trigger the 'error' exit by default. You can also specify a custom exit, by using the 'exits' object.
+
+  _Usage:_
+
+  throw { hasConflictingCourses: ['CS 301', 'M 402'] };
+
+  or 
+
+  return exits.hasConflictingCourses();
+
+  [Read More](https://sailsjs.com/documentation/concepts/actions-and-controllers#?actions-2)
+  `,
+  location: `**location - ${docs["boring"]}**
+
+  Returns a 303 redirect response with a follow-up request that is explicitly changed to a GET request.
+
+  [Read More](https://docs.sailscasts.com/boring-stack/redirects#_303-response-code-for-spas)
+  `,
+  share: `**share - ${docs["boring"]}**
+
+  Share data as a prop to your SPAs.
+
+  _Usage:_
+
+  sails.inertia.share('propName', propData)
+
+  [Read More](https://docs.sailscasts.com/boring-stack/sharing-data)
+  `,
+  flushShared: `**flushShared - ${docs["boring"]}**
+
+  Clear your collections of shared data.
+  
+  sails.inertia.flushShared()
+
   `,
 };
