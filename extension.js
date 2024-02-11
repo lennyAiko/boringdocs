@@ -25,6 +25,11 @@ function activate(context) {
   let currentPanel = undefined;
   let sailsPanel = undefined;
 
+  const panelOptions = {
+    enableScripts: true,
+    retainContextWhenHidden: true,
+  };
+
   context.subscriptions.push(
     vscode.commands.registerCommand("boringdocs.tbjs", function () {
       const columnToShowIn = vscode.window.activeTextEditor
@@ -38,10 +43,7 @@ function activate(context) {
           "boringdocs",
           "Boring Stack Docs",
           columnToShowIn || vscode.ViewColumn.One,
-          {
-            enableScripts: true,
-            retainContextWhenHidden: true,
-          }
+          panelOptions
         );
       }
 
@@ -70,16 +72,6 @@ function activate(context) {
       const columnToShowIn = vscode.window.activeTextEditor
         ? vscode.window.activeTextEditor.viewColumn
         : undefined;
-
-      // const onDiskPath = vscode.Uri.file(
-      //   path.join(context.extensionUri, "assets", "sails.png")
-      // );
-
-      const panelOptions = {
-        enableScripts: true,
-        retainContextWhenHidden: true,
-        // iconPath: onDiskPath,
-      };
 
       if (sailsPanel) {
         sailsPanel.reveal(columnToShowIn);

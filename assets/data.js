@@ -77,6 +77,16 @@ module.exports = {
   `,
   responseType: `**responseType - ${docs["boring"]}**
 
-  
+  responseType is the kind of response that the action will return. It can be custom or the sails default responses.
+
+  _Usage:_
+
+  exits: {
+    success: {
+      responseType: 'notFound',
+    }
+  }
+
+  [Read More](https://sailsjs.com/documentation/concepts/extending-sails/custom-responses#?using-responses)
   `,
 };
