@@ -28,7 +28,7 @@ This is the `boringdocs` VSCode extension that gives you the documentation of [s
 
 ### Hover feature
 
-Hover on a keyword used in sailsjs to get a summary about that keyword.
+Hover on a keyword used in sailsjs and the boring stack to get a summary about that keyword.
 
 ![hover1 gif](/assets/hover1.gif)
 ![hover2 gif](/assets/hover2.gif)
