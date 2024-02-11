@@ -3,8 +3,8 @@
   "displayName": "boringdocs",
   "description": "The vscode extension documentation  for sailsjs and the javascript boring stack",
   "version": "0.0.1",
-  "publisher": "Lennox",
-  "icon": "assets/boringsails.png",
+  "publisher": "LennoxCharles",
+  "icon": "assets/boringdocs.png",
   "engines": {
     "vscode": "^1.86.0"
   },
