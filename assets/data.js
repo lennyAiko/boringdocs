@@ -75,4 +75,8 @@ module.exports = {
   sails.inertia.flushShared()
 
   `,
+  responseType: `**responseType - ${docs["boring"]}**
+
+  
+  `,
 };

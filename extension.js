@@ -1,5 +1,6 @@
 const vscode = require("vscode");
 const data = require("./assets/data");
+const path = require("path");
 
 const docs = {
   boring: "https://docs.sailscasts.com/boring-stack/getting-started",
@@ -45,6 +46,11 @@ function activate(context) {
       }
 
       currentPanel.webview.html = getWebContent("boring");
+      currentPanel.iconPath = vscode.Uri.joinPath(
+        context.extensionUri,
+        "assets",
+        "boring.png"
+      );
       currentPanel.onDidDispose(
         () => {
           currentPanel = undefined;
@@ -65,6 +71,16 @@ function activate(context) {
         ? vscode.window.activeTextEditor.viewColumn
         : undefined;
 
+      // const onDiskPath = vscode.Uri.file(
+      //   path.join(context.extensionUri, "assets", "sails.png")
+      // );
+
+      const panelOptions = {
+        enableScripts: true,
+        retainContextWhenHidden: true,
+        // iconPath: onDiskPath,
+      };
+
       if (sailsPanel) {
         sailsPanel.reveal(columnToShowIn);
       } else {
@@ -72,14 +88,16 @@ function activate(context) {
           "boringdocs",
           "Sailsjs Docs",
           columnToShowIn || vscode.ViewColumn.One,
-          {
-            enableScripts: true,
-            retainContextWhenHidden: true,
-          }
+          panelOptions
         );
       }
 
       sailsPanel.webview.html = getWebContent("sails", "white");
+      sailsPanel.iconPath = vscode.Uri.joinPath(
+        context.extensionUri,
+        "assets",
+        "sails.png"
+      );
       sailsPanel.onDidDispose(
         () => {
           sailsPanel = undefined;
